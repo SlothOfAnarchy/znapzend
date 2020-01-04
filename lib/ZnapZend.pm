@@ -10,6 +10,12 @@ use POSIX qw(setsid SIGTERM SIGKILL WNOHANG);
 use Scalar::Util qw(blessed);
 use Sys::Syslog;
 use File::Basename;
+use strict;
+use warnings; 
+use diagnostics;
+use Carp qw( confess );
+$SIG{__DIE__} =  \&confess;
+$SIG{__WARN__} = \&confess;
 
 ### loglevels ###
 my %logLevels = (
