@@ -69,6 +69,7 @@ my $getSnapshotTimestamp = sub {
     my $snapFilter = $self->getSnapshotFilter($timeFormat);
 
     if (my ($snapshotTimestamp) = $snapshot =~ /^.+\@($snapFilter)$/){
+        print "\nDEBUG Snapshot Time: $snapshotTimestamp\n";
         my $snapshotTime = Time::Piece->strptime($snapshotTimestamp, $timeFormat)
             or die "ERROR: cannot extract time of '$snapshot'\n";
 
@@ -205,6 +206,7 @@ sub getLastScrubTimestamp {
         next if !/$scrubFilter/;
 
         /($scrubTimeFilter)$/ or die "ERROR: cannot parse last scrub time\n";
+        print "\nDEBUG Snapshot Time: $1\n";
         my $scrubTime = Time::Piece->strptime($1, $scrubTimeFormat) or die "ERROR: cannot parse last scrub time\n";
 
         return $scrubTime->epoch;
