@@ -70,9 +70,12 @@ my $getSnapshotTimestamp = sub {
 
     if (my ($snapshotTimestamp) = $snapshot =~ /^.+\@($snapFilter)$/){
         print "\nDEBUG Snapshot Time: $snapshotTimestamp\n";
-        my $snapshotTime = Time::Piece->strptime($snapshotTimestamp, $timeFormat)
-            or die "ERROR: cannot extract time of '$snapshot'\n";
-
+        eval {
+            my $snapshotTime = Time::Piece->strptime($snapshotTimestamp, $timeFormat);
+        } or do {
+            warn "ERROR: cannot extract time of '$snapshot'\n";
+            print "\nDEBUG Snapshot Time: $snapshotTimestamp, snapshot: $snapshot, timeformat: $timeFormat\n";
+        }
         return $snapshotTime->epoch;
     }
 
