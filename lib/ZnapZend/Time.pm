@@ -233,7 +233,7 @@ sub checkTimeFormat {
     my $self = shift;
     my $timeFormat = shift;
 
-    $timeFormat =~ /^(?:%[YmdHMSz]|[\w\-.:])+$/ or die "ERROR: timestamp format not valid. check your syntax\n";
+    $timeFormat =~ /^(?:%[YmdHMSz]|[\w\-.:])+$/ or die "ERROR: timestamp format not valid. check your syntax $timeFormat\n";
 
     #just a made-up timestamp to check if strftime and strptime work
     my $timeToCheck = 1014416542;
