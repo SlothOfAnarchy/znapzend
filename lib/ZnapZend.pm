@@ -664,7 +664,7 @@ my $sendWorker = sub {
             my ($fc, $err) = @_;
 
             $self->zLog->warn('send/receive for ' . $backupSet->{src}
-                . ' failed: ' . $err . '(time:' . $timeStamp . ', backup set: ' . $backupSet .') Trace: ' . $err->trace) if $err;
+                . ' failed: ' . $err . '(time:' . $timeStamp . ', backup set: ' . $backupSet .') ') if $err;
 
             $self->zLog->debug('send/receive worker for ' . $backupSet->{src}
                 . " done ($backupSet->{send_pid})");
